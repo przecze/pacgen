@@ -13,7 +13,7 @@ struct Container {
  virtual void GetVolume(double& vol) = 0;
  /**
   * Positive distance to the closest surface point.
-  * For a point p outside the container return PA::MIN_DISTANCE
+  * For a point p outside the container return PG::MIN_DISTANCE
   */
  virtual double GetDistance(const double* const p) = 0;
  virtual ~Container() {};
@@ -69,8 +69,8 @@ double Box::GetDistance(const double* const p)
   double v = p[i];
   if (v > bmax[i]) return MIN_DISTANCE;
   if (v < bmin[i]) return MIN_DISTANCE;
-  sqDist = PA_MIN(sqDist, bmax[i] - v);
-  sqDist = PA_MIN(sqDist, v - bmin[i]);
+  sqDist = PG_MIN(sqDist, bmax[i] - v);
+  sqDist = PG_MIN(sqDist, v - bmin[i]);
  }
  return sqDist;
 }
@@ -119,8 +119,8 @@ void Cylinder::ComputeBox()
  bmax[0] = bmax[1] = bmax[2] = MIN_DISTANCE;
  for (int i = 0; i < n_corners; ++i)
  {
-  for (int j = 0; j < 3; ++j) bmin[j] = PA_MIN(bmin[j], new_corners[i][j]);
-  for (int j = 0; j < 3; ++j) bmax[j] = PA_MAX(bmax[j], new_corners[i][j]);
+  for (int j = 0; j < 3; ++j) bmin[j] = PG_MIN(bmin[j], new_corners[i][j]);
+  for (int j = 0; j < 3; ++j) bmax[j] = PG_MAX(bmax[j], new_corners[i][j]);
  }
  box_computed = true;
 }
@@ -165,7 +165,7 @@ double Cylinder::GetDistance(const double* const p)
  {
   const vector3d c_p(c[0] - p[0], c[1] - p[1], c[2] - p[2]);
   const double y2 = /*n2:*/vector3d::DotProduct(c_p, c_p) - x * x;
-  if (y2 <= r * r) return PA_MIN(l - fabs(x), r - sqrt(y2));
+  if (y2 <= r * r) return PG_MIN(l - fabs(x), r - sqrt(y2));
   else return MIN_DISTANCE;
  }
  else return MIN_DISTANCE;

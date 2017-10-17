@@ -1,5 +1,5 @@
-#ifndef _PA_COMMON_VECTORS_H_
-#define _PA_COMMON_VECTORS_H_
+#ifndef _VECTORS_H_
+#define _VECTORS_H_
 
 #include <assert.h>
 #define _USE_MATH_DEFINES
@@ -7,8 +7,10 @@
 
 namespace PG
 {
- #define PA_MIN(x,y)   ((x) < (y) ? (x) : (y))
- #define PA_MAX(x,y)   ((x) > (y) ? (x) : (y))
+ #define PG_MIN(x,y)   ((x) < (y) ? (x) : (y))
+ #define PG_MAX(x,y)   ((x) > (y) ? (x) : (y))
+ #define PG_DEG2RAD(x) ((x * M_PI) / 180.0)
+ #define PG_RAD2DEG(x) ((x * 180.0) /M_PI);
 
  /*********************************************************************/
 
@@ -143,4 +145,4 @@ namespace PG
  typedef vec3<double> vector3d;
 }
 
-#endif /* _PA_COMMON_VECTORS_H_ */
+#endif /* _VECTORS_H_ */
