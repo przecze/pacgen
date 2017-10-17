@@ -21,6 +21,8 @@ struct Container {
 
 struct Box : public Container {
  vector3d bmin, bmax; /*!< Defined by the user. */
+ inline Box();
+ inline Box(vector3d bmin, vector3d bmax);
  inline void GetMin(double* m);
  inline void GetMax(double* m);
  inline void GetVolume(double& vol);
@@ -35,6 +37,7 @@ struct Cylinder : public Container {
  bool     box_computed; /*!< Do not modify this! */
 
  inline Cylinder();
+ inline Cylinder(vector3d p0, vector3d p1, double r);
  inline void GetMin(double* m);
  inline void GetMax(double* m);
  inline void ComputeBox(); /*!< To update bmin and bmax in case p0,p1,r change. */
@@ -43,6 +46,10 @@ struct Cylinder : public Container {
 };
 
 /***************************************************************************/
+
+Box::Box() : bmin(0,0,0), bmax(1,1,1) {}
+
+Box::Box(vector3d bmin, vector3d bmax) : bmin(bmin), bmax(bmax) {}
 
 void Box::GetMin(double* m) { for (int i = 0; i < 3; ++i) m[i] = bmin[i]; }
 
@@ -79,13 +86,13 @@ void Cylinder::ComputeBox()
 
  const double half_h = (p1 - p0).length() / 2.0;
  vector3d corners[] = { vector3d(-r, -half_h, -r),
-                            vector3d( r, -half_h, -r),
-                            vector3d( r, -half_h,  r),
-                            vector3d(-r, -half_h,  r),
-                            vector3d(-r,  half_h, -r),
-                            vector3d( r,  half_h, -r),
-                            vector3d( r,  half_h,  r),
-                            vector3d(-r,  half_h,  r) };
+                        vector3d( r, -half_h, -r),
+                        vector3d( r, -half_h,  r),
+                        vector3d(-r, -half_h,  r),
+                        vector3d(-r,  half_h, -r),
+                        vector3d( r,  half_h, -r),
+                        vector3d( r,  half_h,  r),
+                        vector3d(-r,  half_h,  r) };
  const int n_corners(8);
  vector3d new_corners[n_corners];
  for (int i = 0; i < n_corners; ++i)
@@ -118,7 +125,12 @@ void Cylinder::ComputeBox()
  box_computed = true;
 }
 
-Cylinder::Cylinder()
+Cylinder::Cylinder() : p0(0.0, 0.0, 0.0), p1(0.0, 2.0, 0.0), r(1.0)
+{
+ box_computed = false;
+}
+
+Cylinder::Cylinder(vector3d p0, vector3d p1, double r) : p0(p0), p1(p1), r(r)
 {
  box_computed = false;
 }
