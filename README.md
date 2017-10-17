@@ -44,7 +44,7 @@ Has 2 parameters:
 PG::NG* ng = new PG::UniformNG(rmin, rmax);
 ```
 ### Bernoulli Distribution
- Has 3 parameters:
+Has 3 parameters:
 
  - rmin: minimum radius.
  - rmax: maximum radius.
@@ -53,7 +53,7 @@ PG::NG* ng = new PG::UniformNG(rmin, rmax);
 PG::NG* ng = new PG::BernoulliNG(rmin, rmax, rmaxprob);
 ```
 ### Truncated Gaussian Distribution
- Has 4 parameters:
+Has 4 parameters:
 
  - rmin: minimum radius.
  - rmax: maximum radius.
