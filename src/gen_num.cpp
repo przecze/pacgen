@@ -2,6 +2,7 @@
 #include "time.h"
 #include <sstream>
 #include <algorithm>
+#include <cmath>
 
 namespace PG
 {
