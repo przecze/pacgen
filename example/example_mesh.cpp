@@ -1,6 +1,6 @@
-#include "src/gen_pack.h"
-#include "src/gen_usdf.h"
-#include "src/mesh.h"
+#include "gen_pack.h"
+#include "gen_usdf.h"
+#include "mesh.h"
 
 /**
  * Creates a sphere triangle mesh.

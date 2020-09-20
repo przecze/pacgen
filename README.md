@@ -7,6 +7,39 @@ This library is capable of producing packings of spheres that follow a statistic
 
 ----------
 
+## Installation
+Build system is based on cmake
+
+### Basic build
+```
+mkdir cmake_build
+cd cmake_build
+cmake ..
+make
+```
+
+### Running an example
+To run an example, inside `cmake_build` directory run:
+```
+./example/example_<name>
+```
+for example:
+```
+./example/example_box
+```
+This will take some time and produce `box.txt` file as output
+
+### Using in another project
+Inside `cmake_build` run
+```
+sudo make install
+```
+This will install the library in your `/usr/local`.
+Then, in your project cmake packgen should be available via:
+```
+find_package(packgen)
+```
+
 ## Default Containers
 ### Box
 Defined by two points

@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iomanip>
-#include "src/gen_pack.h"
+
+#include "gen_pack.h"
 
 void ExportTxt(const char* filename, PG::SpherePack* const pack)
 {

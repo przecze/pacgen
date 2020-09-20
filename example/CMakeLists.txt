@@ -1,0 +1,6 @@
+file(GLOB example_sources "*.cpp")
+foreach(example_source ${example_sources})
+  get_filename_component(example_name ${example_source} NAME_WLE)
+  add_executable(${example_name} ${example_source})
+  target_link_libraries(${example_name} packgen)
+endforeach()
