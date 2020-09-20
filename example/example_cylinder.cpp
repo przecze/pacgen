@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iomanip>
-#include <iostream>
 
 #include "gen_pack.h"
 
@@ -25,15 +24,11 @@ int main(int argc, char **argv)
                                              1.0);
  double rmin(0.01), rmax(0.03), rmaxprob(0.5);
  PG::NG* ng = new PG::BernoulliNG(rmin, rmax, rmaxprob);
- std::cout << "created ng" << std::endl;
 
  PG::Grid3d dom;
  PG::SpherePack* pack = new PG::SpherePack();
- std::cout << "created pack" << std::endl;
  PG::SpherePackStat result = PG::GenerateSpherePack(container, ng, &dom, pack);
- std::cout << "created result" << std::endl;
  ExportTxt("cylinder.txt", pack);
- std::cout << "exported txt" << std::endl;
 
  delete pack;
  delete ng;
